@@ -1,18 +1,33 @@
-
-var fBody = document.querySelector("body");
 var translate = document.querySelector("#translate");
-
 var textInput = document.querySelector("#usr-input");
-
 var outText = document.querySelector("#outText");
 
-translate.addEventListener("click", eventHandler);
+var serverUrl = "https://api.funtranslations.com/translate/minion.json";
 
-function eventHandler() {
-    console.log(textInput.value);
-    outText.innerHTML = textInput.value + " This is JavaScript Text";
-    fBody.style.backgroundColor = ""
+function getTranslationUrl(text) {
+    return serverUrl + "?" + "text=" + text;
 }
+
+function errorHandler(error) {
+    alert("Something went wrong with the server! try again after some time");
+}
+
+function clickHandler() {
+    var userInput = textInput.value;
+
+    // calling server for processing 
+    fetch(getTranslationUrl(userInput))
+        .then(response => response.json())
+        .then(json => {
+            outText.innerText = json.contents.translated
+        })
+        .catch(errorHandler)
+
+    // outText.innerText = textInput.value;
+    outText.style.opacity = "100%";
+}
+
+translate.addEventListener("click", clickHandler);
 
 
 
