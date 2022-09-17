@@ -11,6 +11,18 @@ header {
     min-height: 75vh;
 }
 
+.navbar {
+    display: flex;
+    /* background-color: aquamarine; */
+    background-color: aquamarine;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 60px;
+}
+
 h1 {
     text-align: center;
     background-color: aquamarine;
